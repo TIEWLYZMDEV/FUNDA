@@ -4,6 +4,26 @@
     {
       "source": "/api/:match*",
       "destination": "http://rtrs-alb-1142412083.ap-southeast-1.elb.amazonaws.com/api/:match*"
+    },
+    {
+      "source": "/reservations",
+      "destination": "/"
+    },
+    {
+      "source": "/new-reservation",
+      "destination": "/"
+    },
+    {
+      "source": "/search",
+      "destination": "/"
+    },
+    {
+      "source": "/add-table",
+      "destination": "/"
+    },
+    {
+      "source": "/about",
+      "destination": "/"
     }
   ]
 }
