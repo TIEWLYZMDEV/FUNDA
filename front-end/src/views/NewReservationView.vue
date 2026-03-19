@@ -37,6 +37,9 @@ const registerReservation = async () => {
     if (err.response && err.response.data) {
       generalError.value = err.response.data.message;
       validationErrors.value = err.response.data.errors;
+    } else {
+      generalError.value =
+        "Could not submit the reservation right now. Please try again in a moment.";
     }
   }
 };

@@ -44,6 +44,9 @@ const registerTable = async () => {
       emptyFieldsError.value = err.response.data.message;
       validationErrors.value = err.response.data.errors;
       console.log(validationErrors.value);
+    } else {
+      emptyFieldsError.value =
+        "Could not submit the table right now. Please try again in a moment.";
     }
   }
 };

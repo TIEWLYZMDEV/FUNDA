@@ -2,10 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
-      "source": "/api/:match*",
-      "destination": "http://rtrs-alb-1142412083.ap-southeast-1.elb.amazonaws.com/api/:match*"
-    },
-    {
       "source": "/reservations",
       "destination": "/"
     },
