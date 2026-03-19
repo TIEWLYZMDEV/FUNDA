@@ -13,6 +13,8 @@
     "start": "node ./src/app.js",
     "start:dev": "npm run migrate:up && nodemon -L ./src/app.js",
     "start:prod": "npm run migrate:up && node ./src/app.js",
+    "serve:prod": "node ./src/app.js",
+    "migrate:prod": "npx sequelize db:migrate",
     "app:dev": "concurrently -n \"server,client\" -c \"bgYellow,bgGreen\" \"npm run start:dev\" \"npm run --prefix ../front-end dev\"",
     "app:prod": "concurrently -n \"server,client\" -c \"bgYellow,bgGreen\" \"npm run start:prod\" \"npm run --prefix ../front-end dev\"",
     "migrate:up": "npx sequelize db:migrate",

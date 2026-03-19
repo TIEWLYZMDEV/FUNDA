@@ -14,4 +14,9 @@ router
   .get(tryCatchHandler(mainController.infoHandler))
   .all(httpMethodError);
 
+router
+  .route("/health")
+  .get(tryCatchHandler(mainController.healthHandler))
+  .all(httpMethodError);
+
 module.exports = router;

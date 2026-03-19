@@ -1,3 +1,5 @@
+const os = require("os");
+
 const entryHandler = (req, res) => {
   return res
     .status(200)
@@ -12,7 +14,18 @@ const infoHandler = (req, res) => {
   });
 };
 
+const healthHandler = (req, res) => {
+  return res.status(200).json({
+    status: "ok",
+    uptime: process.uptime(),
+    hostname: os.hostname(),
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || "development",
+  });
+};
+
 module.exports = {
   entryHandler,
   infoHandler,
+  healthHandler,
 };

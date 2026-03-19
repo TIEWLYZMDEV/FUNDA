@@ -56,6 +56,12 @@ $ npm run start:prod
 $ npm run start:dev
 ```
 
+## Production Deployment
+
+For a production setup with `Vercel + AWS Load Balancer + EC2 + RDS MariaDB`, follow:
+
+* [AWS + Vercel Deployment Guide](./DEPLOYMENT_AWS_VERCEL.md)
+
 ## Credits
 
 This software uses the following open source packages:
