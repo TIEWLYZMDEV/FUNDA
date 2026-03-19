@@ -8,6 +8,12 @@ import Icons from "unplugin-icons/vite";
 export default defineConfig({
   server: {
     port: 3000,
+    proxy: {
+      "/api": {
+        target: "http://localhost:5000",
+        changeOrigin: true,
+      },
+    },
   },
   plugins: [Icons({ compiler: "vue3" }), vue()],
   resolve: {
