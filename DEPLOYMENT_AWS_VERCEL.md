@@ -19,7 +19,7 @@ Set the Vercel project root to `front-end`.
 Recommended no-domain setup:
 
 - Keep frontend requests on the same Vercel origin with `/api/v1`
-- Use `front-end/vercel.json` to rewrite `/api/*` to the AWS ALB
+- Use `front-end/vercel.json` to externally rewrite `/api/*` to the AWS ALB
 - This avoids browser mixed-content issues while your ALB is still HTTP-only
 
 Environment variable on Vercel:
@@ -28,7 +28,7 @@ Environment variable on Vercel:
 VITE_API_BASE_URL=/api/v1
 ```
 
-Current rewrite destination in this repo:
+Current backend rewrite target in this repo:
 
 ```bash
 http://rtrs-alb-1142412083.ap-southeast-1.elb.amazonaws.com

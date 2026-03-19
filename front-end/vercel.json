@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "/api/[...path]"
+      "destination": "http://rtrs-alb-1142412083.ap-southeast-1.elb.amazonaws.com/api/:path*"
     },
     {
       "source": "/reservations",
