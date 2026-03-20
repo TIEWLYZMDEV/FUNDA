@@ -17,8 +17,8 @@ import dateNavigator from "@/utils/dateNavigator";
 
 import { ref, computed, onMounted, onUnmounted } from "vue";
 
-const observer = ref({});
-const allTablesRef = ref({});
+const observer = ref(null);
+const allTablesRef = ref(null);
 
 const fields = ref({
   name: "Name",
@@ -26,8 +26,8 @@ const fields = ref({
   resTime: "Reservation Time",
 });
 
-const reservations = ref(null);
-const tables = ref(null);
+const reservations = ref([]);
+const tables = ref([]);
 const currDate = ref(dateNavigator.setToday());
 
 const freeTables = computed(() => {
@@ -115,13 +115,14 @@ const onExit = () => {
 };
 
 onMounted(() => {
+  if (!allTablesRef.value) return;
   observer.value = onIntersect(allTablesRef.value, onEnter, onExit, true, {
     threshold: 0.2,
   });
 });
 
 onUnmounted(() => {
-  observer.value.disconnect();
+  if (observer.value?.disconnect) observer.value.disconnect();
 });
 </script>
 
