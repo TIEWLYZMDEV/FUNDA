@@ -102,13 +102,11 @@ const assignSelectedReservation = (reservation) => {
   console.log(selectedReservation.value);
 };
 
-// callback being called on intersection
 const onEnter = () => {
   document.documentElement.style.setProperty("--opacity-val", 1);
   document.documentElement.style.setProperty("--blur-val", 0);
 };
 
-// optional callback being called when the targetElement is no longer intersected
 const onExit = () => {
   document.documentElement.style.setProperty("--opacity-val", 0);
   document.documentElement.style.setProperty("--blur-val", "5px");
