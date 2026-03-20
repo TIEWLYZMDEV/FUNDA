@@ -12,7 +12,12 @@ router
 
 router
   .route("/:tableId")
-  .delete(tryCatchHandler(tableController.freeTableHandler))
+  .delete(tryCatchHandler(tableController.deleteHandler))
+  .all(httpMethodError);
+
+router
+  .route("/:tableId/free")
+  .patch(tryCatchHandler(tableController.freeTableHandler))
   .all(httpMethodError);
 
 module.exports = router;

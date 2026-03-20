@@ -52,8 +52,20 @@ const freeTableHandler = async (req, res) => {
   });
 };
 
+const deleteHandler = async (req, res) => {
+  const tableId = req.params.tableId;
+  const info = await tableService.deleteTable(tableDAO, tableId);
+
+  return res.status(200).json({
+    success: true,
+    message: "Successfully deleted the chosen table!",
+    item: info,
+  });
+};
+
 module.exports = {
   getAllHandler,
   registerHandler,
   freeTableHandler,
+  deleteHandler,
 };

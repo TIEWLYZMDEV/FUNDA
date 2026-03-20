@@ -21,6 +21,28 @@ const freeTable = async (id) => {
     console.log(res);
   } catch (err) {
     console.log(err);
+    window.alert(
+      err?.response?.data?.message ?? "Could not free the selected table."
+    );
+  }
+};
+
+const deleteTable = async (id) => {
+  const shouldDelete = window.confirm(
+    "Do you really want to delete this table?"
+  );
+
+  if (!shouldDelete) return;
+
+  try {
+    const res = await tableAPI.deleteTable(id);
+    emit("onFreedTable");
+    console.log(res);
+  } catch (err) {
+    console.log(err);
+    window.alert(
+      err?.response?.data?.message ?? "Could not delete the selected table."
+    );
   }
 };
 </script>
@@ -35,6 +57,13 @@ const freeTable = async (id) => {
         @click="freeTable(props.table.id)"
       >
         Free
+      </div>
+      <div
+        class="delete-table-button"
+        v-show="!props.table.isOccupied"
+        @click="deleteTable(props.table.id)"
+      >
+        Delete
       </div>
     </div>
     <div class="content">
@@ -95,6 +124,24 @@ const freeTable = async (id) => {
   background-color: var(--primary-white);
   border-color: var(--primary-green);
   color: var(--primary-green);
+}
+.header .delete-table-button {
+  position: relative;
+  top: 0;
+  right: 5px;
+  color: var(--primary-black);
+  border: 1px solid var(--primary-black);
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: "Inter-Bold";
+  transition: all 0.2s ease;
+}
+.delete-table-button:hover {
+  background-color: var(--primary-white);
+  border-color: var(--primary-red);
+  color: var(--primary-red);
 }
 .content {
   display: flex;

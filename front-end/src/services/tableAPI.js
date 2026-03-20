@@ -8,6 +8,9 @@ class TableAPI {
     return API().get("/tables");
   }
   freeTable(tableId) {
+    return API().patch("/tables/" + tableId + "/free");
+  }
+  deleteTable(tableId) {
     return API().delete("/tables/" + tableId);
   }
 }
