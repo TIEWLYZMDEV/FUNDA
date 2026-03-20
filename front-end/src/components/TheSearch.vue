@@ -10,26 +10,7 @@ import { ref, computed } from "vue";
 
 const searchVal = ref("");
 
-const reservations = ref([
-  {
-    firstName: "Slavyan",
-    lastName: "Hristov",
-    phone: "+123456789",
-    email: "slavqn@example.com",
-    resDate: "16/10/2022",
-    resTime: "08:00 AM",
-    people: 3,
-  },
-  {
-    firstName: "John",
-    lastName: "Doe",
-    phone: "+123456789",
-    email: "johndoe@example.com",
-    resDate: "17/10/2022",
-    resTime: "09:00 AM",
-    people: 5,
-  },
-]);
+const reservations = ref([]);
 
 const getReservations = async () => {
   try {
@@ -37,8 +18,8 @@ const getReservations = async () => {
     console.log(res.data.collection);
     reservations.value = res?.data?.collection ?? [];
   } catch (err) {
-    console.log(err);
     reservations.value = [];
+    console.log(err);
   }
 };
 await getReservations();

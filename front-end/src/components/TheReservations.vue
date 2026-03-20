@@ -33,6 +33,7 @@ const currDate = ref(dateNavigator.setToday());
 const freeTables = computed(() => {
   return (tables.value ?? []).filter((table) => !table.isOccupied);
 });
+
 const filterReservations = computed(() => {
   return (reservations.value ?? []).filter(
     (reservation) => reservation.resDate === currDate.value
@@ -48,8 +49,8 @@ const getReservations = async () => {
     const res = await reservationAPI.getReservations();
     reservations.value = res?.data?.collection ?? [];
   } catch (err) {
-    console.log(err);
     reservations.value = [];
+    console.log(err);
   }
 };
 
@@ -59,8 +60,8 @@ const getTables = async () => {
     tables.value = res?.data?.collection ?? [];
     console.log(tables.value);
   } catch (err) {
-    console.log(err);
     tables.value = [];
+    console.log(err);
   }
 };
 
