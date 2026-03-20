@@ -1,6 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 const dateTimeValidator = require("../../utils/dateAndTimeValidator");
+
 module.exports = (sequelize, DataTypes) => {
   class Reservation extends Model {
     static associate(models) {
@@ -12,12 +13,14 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: "cascade",
         hooks: true,
       });
+
       Reservation.hasMany(models.table, {
         onUpdate: "cascade",
         hooks: true,
       });
     }
   }
+
   Reservation.init(
     {
       resDate: {
@@ -72,7 +75,9 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "reservation",
+      tableName: "Reservations",
     }
   );
+
   return Reservation;
 };

@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   class Table extends Model {
     static associate(models) {
@@ -9,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
+
   Table.init(
     {
       name: {
@@ -21,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
                 name: value,
               },
             });
+
             if (table) throw new Error("Table with this name already exists!");
           },
           notEmpty: {
@@ -61,6 +64,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "table",
+      tableName: "Tables",
       indexes: [
         {
           unique: true,
@@ -69,5 +73,6 @@ module.exports = (sequelize, DataTypes) => {
       ],
     }
   );
+
   return Table;
 };

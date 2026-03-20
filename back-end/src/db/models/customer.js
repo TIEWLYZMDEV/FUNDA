@@ -1,6 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 const regularExpressions = require("../../utils/regularExpressions");
+
 module.exports = (sequelize, DataTypes) => {
   class Customer extends Model {
     static associate(models) {
@@ -13,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
+
   Customer.init(
     {
       firstName: {
@@ -58,6 +60,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "customer",
+      tableName: "Customers",
       indexes: [
         {
           unique: true,
@@ -66,5 +69,6 @@ module.exports = (sequelize, DataTypes) => {
       ],
     }
   );
+
   return Customer;
 };
