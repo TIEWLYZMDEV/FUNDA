@@ -35,15 +35,16 @@ const getReservations = async () => {
   try {
     const res = await reservationAPI.getReservations();
     console.log(res.data.collection);
-    reservations.value = res.data.collection;
+    reservations.value = res?.data?.collection ?? [];
   } catch (err) {
     console.log(err);
+    reservations.value = [];
   }
 };
 await getReservations();
 
 const filteredReservations = computed(() => {
-  return filterCollectionByVal(reservations.value, searchVal.value);
+  return filterCollectionByVal(reservations.value ?? [], searchVal.value);
 });
 </script>
 

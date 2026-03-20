@@ -15,7 +15,7 @@ import reservationAPI from "@/services/reservationAPI";
 import tableAPI from "@/services/tableAPI";
 import dateNavigator from "@/utils/dateNavigator";
 
-import { ref, computed, onMounted, onUnmounted } from "vue";
+import { ref, computed, onMounted, onUnmounted, nextTick } from "vue";
 
 const observer = ref(null);
 const allTablesRef = ref(null);
@@ -31,10 +31,10 @@ const tables = ref([]);
 const currDate = ref(dateNavigator.setToday());
 
 const freeTables = computed(() => {
-  return tables.value.filter((table) => !table.isOccupied);
+  return (tables.value ?? []).filter((table) => !table.isOccupied);
 });
 const filterReservations = computed(() => {
-  return reservations.value.filter(
+  return (reservations.value ?? []).filter(
     (reservation) => reservation.resDate === currDate.value
   );
 });
@@ -46,19 +46,21 @@ const selectedReservation = ref(null);
 const getReservations = async () => {
   try {
     const res = await reservationAPI.getReservations();
-    reservations.value = res.data.collection;
+    reservations.value = res?.data?.collection ?? [];
   } catch (err) {
     console.log(err);
+    reservations.value = [];
   }
 };
 
 const getTables = async () => {
   try {
     const res = await tableAPI.getAllTables();
-    tables.value = res.data.collection;
+    tables.value = res?.data?.collection ?? [];
     console.log(tables.value);
   } catch (err) {
     console.log(err);
+    tables.value = [];
   }
 };
 
@@ -112,8 +114,11 @@ const onExit = () => {
   document.documentElement.style.setProperty("--blur-val", "5px");
 };
 
-onMounted(() => {
-  if (!allTablesRef.value) return;
+onMounted(async () => {
+  await nextTick();
+
+  if (!(allTablesRef.value instanceof Element)) return;
+
   observer.value = onIntersect(allTablesRef.value, onEnter, onExit, true, {
     threshold: 0.2,
   });
